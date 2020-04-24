@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="background-color: #D1F2EB ;">
+
+
+  <div class="container-fluid">
+
+
+  <div class="row">
+
+
+  <!-- <div class="col-6" style="margin-top: 200px;"> -->
+  <div class="jumbotron col-6" style="margin-top: 160px; margin-bottom: 160px; padding-top: 2rem; background-color: #4F8BC2; color: white; text-align: center;">
+
+    <h1>DO YOU SPEAK TECHNOLOGY..?</h1>
+    <br>
+    <h3>Why don't you write...</h3>
+    <br><br>
+    <div class="col" >
+
+      <a href="{% url 'signup' %}" type="button"  class="btn btn-success btn-lg">Get Started</a><br><br>
+
+      Already have an account? <a href="{% url 'login' %}" style="color:#4BED00;">Sign in.</a>
+
+    </div>
+
+    </div>
+  <!-- </div> -->
+
+      <div class="jumbotron col-4" style="margin-top: 160px; margin-bottom: 160px; background-color: #C2E4FC; max-height: 500px; padding: 32px 32px;">
+        <h2 class="display-4">Latest Posts...</h2>
+        <br>
+          {% for post in latest_posts %}
+
+          <ul>
+            <li> <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: black;"> <p class="h6">{{ post.title|truncatechars:100 }}</p></a></li>
+          </ul>
+
+            {% endfor %}
+  </div>
+  </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

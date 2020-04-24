@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="background-color: #D1F2EB ; overflow:auto;">
+<div class="container">
+  <br><br>
+  <div class="col-6" style="margin-top: 100px">
+<div class="jumbotron" style="margin-top: 160px; margin-bottom: 160px; padding-top: 2rem; background-color: #EBF3FF; color: black;">
+
+    <h2 align='center'>Login</h2><br>
+  <form method="post" enctype="multipart/form-data">
+
+    {{form|crispy}}
+    {% csrf_token %}
+
+    <input class="btn btn-success" type="submit" value="Login">&nbsp&nbsp&nbsp&nbsp
+    <a href="{% url 'password_reset' %}" style="color:#41C404;">Forgot Password</a>
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

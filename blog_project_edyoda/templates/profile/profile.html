@@ -1,0 +1,74 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div style="background-color: #F2F3F4  ; overflow:auto;">
+<div class="container" style="background-color: #EBF3FF;">
+<div class="row">
+  <div class="col-12">
+
+
+
+    <div class="dsh-profile" style="margin-top:100px;">
+        <img align="left" class="dsh-image-lg" src="https://edyoda.s3.amazonaws.com/media/blog-images/edyoda-learn-technology-for-free.jpg" height="350"alt="Profile image"/>
+
+        <img align="left" class="dsh-image-profile rounded-lg" src="{{ user.profile.image.url }}" alt="Profile image"/>
+
+        <div class="dsh-profile-text">
+            <h1>{{user.profile.display_name|capfirst}}
+              <span><a href = "{% url 'profile-update'%}" type="button" class="btn btn-secondary btn-sm" style="margin-left:50px;">Update Info</a></span>
+              <span><a href = "{% url 'password_change'%}" type="button" class="btn btn-secondary btn-sm" style="margin-left:50px;">Change Password</a></span></h1>
+
+            <br><br>
+            <h4>{{user.bio}}</h4>
+        </div>
+    </div>
+      </div>
+
+      <div class="container">
+
+    <div class="col-10 mr-auto ml-auto"  style="margin-top:50px;" >
+
+      <h1>Your Latest Posts...</h1>
+      <br><br><br>
+      {%for post in author_posts%}
+
+      <!-- <div class="card" style="width: 18rem;">
+        <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: black;">
+  <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}">
+  <div class="card-body">
+    <h5 class="card-title">{{ post.title }}</h5>
+    <p class="card-text"><small class="text-muted">{{post.author|capfirst}} | {{post.date}} | Read Time:{{post.get_readtime}} |&nbsp&nbsp <i class="fas fa-star"></i> &nbsp&nbsp Likes: &nbsp&nbsp&nbsp&nbsp{{post.total_likes}}</small></p>
+    <span><a href="{% url 'blog:update-view' post.slug %}" type="button" class="btn btn-primary btn-sm">Update</a><button type="button" class="btn btn-danger btn-sm">Delete</button></span>
+  </div>
+
+</div> -->
+
+      <div class="card mb-4" style="max-width: 740px; background-color: #EBF3FF;">
+        <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: black;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <!-- <img src="{{ post.image.url }}" class="card-img"  height="100%"  alt="{{ post.title }}"> -->
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <!-- <p class="card-text">{{post.content|safe|truncatechars:100}}</p> -->
+              <p class="card-text"><small class="text-muted">{{post.author|capfirst}} | {{post.date}} | Read Time:{{post.get_readtime}} |&nbsp&nbsp <i class="fas fa-star"></i> &nbsp&nbsp Likes: &nbsp&nbsp&nbsp&nbsp{{post.total_likes}}</small></p>
+              <span class="card-text"><a href="{% url 'blog:update-view' post.slug %}" type="button" class="btn btn-primary btn-sm">Update</a> &nbsp&nbsp&nbsp&nbsp <a href="{% url 'blog:delete-view' post.slug %}" type="submit" class="btn btn-danger btn-sm">Delete</a></span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+        {% endfor %}
+    </div>
+      </div>
+
+</div>
+
+    </div>
+    </div>
+{% endblock %}

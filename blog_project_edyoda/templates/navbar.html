@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<a class="navbar-brand mb-0 h1" href="{% url 'blog:landing' %}">EdYoda</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
+        </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Explore Categories
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      {% for cat in category %}
+      <a class="dropdown-item" href="{% url 'blog:category_buttons' cat.id %}">{{cat.name}}</a>
+      {% endfor %}
+
+
+        </div>
+      </li>
+
+    </ul>
+    <ul class="navbar-nav ml-auto">
+
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' %}">Welcome {{ user.get_username|upper }}  |</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:posts' %}">Create Post  |</a>
+        </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">Logout  |</a>
+        </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">Login  |</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'signup' %}">SignUp  |</a>
+      </li>
+      {% endif %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'blog:contacts' %}">ContactUs</a>
+      </li>
+      </ul>
+
+  </div>
+</nav>

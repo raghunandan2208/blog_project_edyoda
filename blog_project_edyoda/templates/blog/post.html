@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block extra-head %}
+{{form.media}}
+{% endblock %}
+
+
+{% block content %}
+<div style="background-color: #F2F3F4  ; overflow:auto;">
+  <div class="container">
+
+    <div class="jumbotron" style="margin-top: 100px; background-color: #EBF3FF;">
+
+        <h1>What's in Your Mind..?</h1><br>
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <br><br>
+      <input type="submit" class="btn btn-success btn-lg" name="" value="Submit">
+    </form>
+  </div>
+  </div>
+  </div>
+
+
+
+{% endblock %}

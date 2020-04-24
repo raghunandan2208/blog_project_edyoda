@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+  <div class="col-6" style="margin-top: 100px">
+<div class="jumbotron" style="margin-top: 180px; margin-bottom: 220px; padding-top: 2rem; background-color: #EBF3FF; color: black;">
+
+    <h2 align='center'>Do you want to delete {{post.title}} ??</h2><br>
+    <form method="post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger btn-sm" name="" value="Delete">&nbsp&nbsp&nbsp&nbsp
+      <a href="{% url 'profile' %}" type="submit" class="btn btn-primary btn-sm">cancel</a>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

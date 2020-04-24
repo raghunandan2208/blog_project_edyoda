@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="background-color: #D1F2EB; overflow:auto;">
+<div class="container">
+  <br><br>
+
+  <div class="col-6" style="margin-top: 100px">
+<div class="jumbotron" style="padding-top: 2rem; background-color: #EBF3FF; color: black;">
+
+
+    <h2 align='center'>SignUp</h2><br>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+
+
+    <input class="btn btn-success" type="submit" name="" value="Signup">
+
+  </form>
+
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div style="background-color: #F2F3F4  ; overflow:auto;">
+<div class="container">
+<br><br><br><br>
+<div class="row" style="overflow:auto;">
+  {% if query %}
+  <div class="col-12 mx-auto" style="padding: 10px; color:black;">
+  <h1 class="display-4" >Results for {{ query|capfirst }}</h1>
+    <hr>
+    </div>
+    {% else %}
+    <div class="col-12 col-md-6 mx-auto py-5" style="overflow:auto;">
+
+          <form method="GET" action="{% url 'blog:search' %}" class="form my-2 my-lg-0"  >
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search EdYoda"  name="q" value="">
+          <span class="input-group-btn">
+          <button class="btn btn-success" type="submit" >Search</button>
+          </span>
+            </div>
+          </form>
+
+    </div>
+    <div class="col-12">
+      <hr>
+    </div>
+    {% endif %}
+  </div>
+
+
+<div class="row" style="overflow:auto;" >
+  <div class="col-8">
+
+      {% for post in posts %}
+
+      <div class="card mb-4" style="max-width: 740px; background-color: #EBF3FF;">
+        <a href="{{ post.get_absolute_url }}" class="text-decoration-none" style="color: black;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{{ post.image.url }}" class="card-img" height=100% alt="{{ post.title }}">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <!-- <p class="card-text">{{post.content|safe|truncatechars:100}}</p> -->
+              <p class="card-text"><small class="text-muted">{{post.author|capfirst}} | {{post.date}} | Read Time:{{post.get_readtime}} |&nbsp&nbsp <i class="fas fa-star"></i> &nbsp&nbsp Likes: &nbsp&nbsp&nbsp&nbsp{{post.total_likes}}</small></p>
+            </div>
+          </div>
+        </div>
+        </a>
+      </div>
+        {% endfor %}
+</div>
+      <div class="jumbotron col-4" style="background-color: #C2E4FC; max-height: 500px; padding:32px 32px;">
+        <h2 class="display-4">Categories...</h2><br>
+
+          {% for cat in category %}
+
+          <ul>
+            <li> <a href="{% url 'blog:category_buttons' cat.id %}">{{ cat.name }} </a></p></li>
+          </ul>
+
+            {% endfor %}
+
+      </div>
+</div>
+</div>
+</div>
+{% endblock %}

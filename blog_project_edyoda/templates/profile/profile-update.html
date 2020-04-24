@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+  <div class="col-6" style="margin-top: 100px">
+<div class="jumbotron" style="padding-top: 2rem; background-color: #EBF3FF; color: black;">
+
+<form method="POST" enctype="multipart/form-data">
+    <fieldset class="form-group">
+        <h2>Update Your Profile here....</h2>
+        <br>
+        {{profile_form|crispy}}
+    {{user_form|crispy}}
+    </fieldset>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">Update</button>
+
+</form>
+
+</div>
+</div>
+</div>
+{% endblock %}
