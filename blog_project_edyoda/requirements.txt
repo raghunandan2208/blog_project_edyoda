@@ -7,7 +7,7 @@ django-js-asset==1.2.2
 django-tinymce==3.0.1
 lxml==4.5.0
 markdown2==2.3.8
-Pillow==7.1.1
+Pillow==8.3.2
 pyquery==1.4.1
 pytz==2019.3
 readtime==1.1.1
